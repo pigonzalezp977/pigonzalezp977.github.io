@@ -46,7 +46,7 @@
             padding-left: 15px; 
         }
 
-        /* Experiencia y Educación */
+        /* Tarjetas de Experiencia y Educación */
         .card { margin-bottom: 30px; }
         .card-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
         .card-title { font-weight: 700; font-size: 1.15rem; margin: 0; color: var(--text-main); }
@@ -55,36 +55,44 @@
         .card-desc { font-size: 0.95rem; color: var(--text-main); margin-top: 10px; }
 
         /* Grid Maker & Skills */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .skill-item { background: var(--bg-alt); padding: 25px; border-radius: 12px; border: 1px solid var(--border); }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .skill-item { background: var(--bg-alt); padding: 25px; border-radius: 12px; border: 1px solid var(--border); display: flex; flex-direction: column; }
         .skill-item h3 { margin-top: 0; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; color: var(--text-main); }
         .project-bullet { margin-bottom: 12px; padding-left: 12px; border-left: 2px solid var(--accent); font-size: 0.9rem; }
 
-        /* Radar de Noticias con Diseño Refinado */
-        .radar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        /* Elementos Abatibles (Global) */
+        details { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 20px; cursor: pointer; transition: all 0.3s ease; }
+        details[open] { cursor: default; padding-bottom: 25px; }
+        summary { font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 10px; list-style: none; outline: none; }
+        summary::-webkit-details-marker { display: none; }
+        summary::before { content: '\f078'; font-family: 'Font Awesome 6 Free'; transition: transform 0.3s ease; color: var(--accent); font-size: 0.8rem; }
+        details[open] summary::before { transform: rotate(180deg); }
+
+        /* Galería de Videos */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 20px; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+        .video-thumbnail { width: 100%; height: 100%; position: absolute; top: 0; left: 0; object-fit: cover; }
+        .play-button-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1); z-index: 10; }
+        .video-container:hover .play-button-overlay { background: rgba(0,0,0,0.5); }
+        .play-button-icon { font-size: 3rem; color: #fff; background: rgba(0,0,0,0.7); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border: 2px solid #fff; transition: transform 0.3s ease; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; z-index: 20; }
+
+        /* Radar de Noticias (Dentro de abatible) */
+        .radar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
         .radar-card {
-            background: var(--bg-alt);
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            border-top: 4px solid var(--accent);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: #ffffff; padding: 15px; border-radius: 10px; border: 1px solid var(--border);
+            border-top: 4px solid var(--accent); display: flex; flex-direction: column; justify-content: space-between;
+            transition: transform 0.2s ease;
         }
         .radar-card:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.08); }
-        .radar-tag { font-size: 0.65rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: block; }
-        .radar-title { font-size: 0.95rem; margin: 0 0 10px 0; line-height: 1.4; font-weight: 700; }
-        .radar-desc { font-size: 0.85rem; color: var(--text-light); margin-bottom: 15px; flex-grow: 1; }
-        .radar-link { font-size: 0.8rem; color: var(--accent); font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .radar-tag { font-size: 0.6rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; display: block; }
+        .radar-title { font-size: 0.85rem; margin: 0 0 10px 0; line-height: 1.4; font-weight: 700; color: var(--text-main); }
+        .radar-desc { font-size: 0.75rem; color: var(--text-light); margin-bottom: 15px; flex-grow: 1; }
+        .radar-link { font-size: 0.7rem; color: var(--accent); font-weight: bold; text-decoration: none; }
 
         footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--border); color: var(--text-light); font-size: 0.85rem; }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .card-header { flex-direction: column; }
-        }
+        @media (max-width: 600px) { h1 { font-size: 2rem; } }
     </style>
 </head>
 <body>
@@ -94,7 +102,6 @@
         <h1>Pablo Italo González Puelles</h1>
         <p class="job-headline">Product Owner | Estrategia de Producto & Gestión IT</p>
         <div class="contact-grid">
-            <span><i class="fas fa-map-marker-alt"></i> Santiago, Chile</span>
             <span><i class="fas fa-globe"></i> pigp.cl</span>
             <a href="mailto:pigonzalezp977@gmail.com"><i class="fas fa-envelope"></i> pigonzalezp977@gmail.com</a>
             <a href="https://www.linkedin.com/in/pablo-g-85a569140/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
@@ -104,44 +111,29 @@
     <section>
         <h2>Trayectoria en Gestión</h2>
         <div class="card">
-            <div class="card-header">
-                <p class="card-title">Product Owner</p>
-                <span class="card-date">2012 — PRESENTE</span>
-            </div>
+            <div class="card-header"><p class="card-title">Product Owner</p><span class="card-date">2012 — PRESENTE</span></div>
             <span class="card-subtitle">Clínica Alemana de Santiago</span>
-            <p class="card-desc">Liderazgo estratégico en la definición y evolución del producto para la Calidad de Datos. Gestión del backlog, priorización basada en valor de negocio y alineación de stakeholders en procesos de migración hacia arquitecturas modernas con stack Java y Kubernetes.</p>
+            <p class="card-desc">Liderazgo estratégico en la evolución de productos digitales complejos. Responsable del ciclo de vida del producto y alineación técnica en infraestructuras modernas.</p>
         </div>
         <div class="card">
-            <div class="card-header">
-                <p class="card-title">Consultor de Proyectos & Analista</p>
-                <span class="card-date">2006 — 2012</span>
-            </div>
+            <div class="card-header"><p class="card-title">Consultor de Proyectos</p><span class="card-date">2006 — 2012</span></div>
             <span class="card-subtitle">Everis (NTT DATA)</span>
-            <p class="card-desc">Gestión y ejecución de soluciones de alta complejidad para clientes corporativos (Movistar, LAN). Transición exitosa desde el desarrollo técnico senior hacia la dirección de proyectos y análisis funcional.</p>
+            <p class="card-desc">Transición del desarrollo senior a la gestión estratégica de proyectos BI y J2EE para grandes corporaciones.</p>
         </div>
     </section>
 
     <section>
         <h2>Formación Estratégica</h2>
         <div class="card">
-            <div class="card-header">
-                <p class="card-title">Diplomado en Gestión de Proyectos Informáticos</p>
-                <span class="card-date">2019</span>
-            </div>
+            <div class="card-header"><p class="card-title">Diplomado en Gestión de Proyectos Informáticos</p><span class="card-date">2019</span></div>
             <span class="card-subtitle">Universidad de Chile</span>
         </div>
         <div class="card">
-            <div class="card-header">
-                <p class="card-title">Diplomado en IA Orientada a la Salud</p>
-                <span class="card-date">2025</span>
-            </div>
+            <div class="card-header"><p class="card-title">Diplomado en IA Orientada a la Salud</p><span class="card-date">2025</span></div>
             <span class="card-subtitle">Universidad Técnica Federico Santa María</span>
         </div>
         <div class="card">
-            <div class="card-header">
-                <p class="card-title">Ingeniería de Ejecución en Informática</p>
-                <span class="card-date">UTEM</span>
-            </div>
+            <div class="card-header"><p class="card-title">Ingeniería de Ejecución en Informática</p><span class="card-date">UTEM</span></div>
         </div>
     </section>
 
@@ -149,79 +141,92 @@
         <h2>Competencias & Cultura Maker</h2>
         <div class="skills-grid">
             <div class="skill-item">
-                <h3><i class="fas fa-brain"></i> Perfil Híbrido</h3>
-                <p style="font-size: 0.9rem; color: var(--text-light);">Más de 20 años en tecnología. La sólida base como desarrollador autodidacta (Java) permite una comunicación técnica precisa, facilitando el rol de Product Owner como puente entre negocio e ingeniería.</p>
+                <h3><i class="fas fa-microchip"></i> Laboratorio Raspberry Pi</h3>
+                <div class="project-bullet">Servidores Edge & Automatización local.</div>
+                <div class="project-bullet">Experimentación en Orquestación (K8s).</div>
             </div>
             <div class="skill-item">
-                <h3><i class="fas fa-tools"></i> Proyectos Maker</h3>
-                <div class="project-bullet">
-                    <strong>Carpintería Técnica:</strong> Diseño y construcción a medida.
-                </div>
-                <div class="project-bullet">
-                    <strong>Fabricación Digital:</strong> Uso de Bambu Lab A1 Mini para prototipado funcional y piezas personalizadas.
-                </div>
+                <h3><i class="fas fa-tools"></i> Carpintería & 3D</h3>
+                <div class="project-bullet">Fabricación Digital en Bambu Lab A1 Mini.</div>
+                <div class="project-bullet">Construcción de estructuras técnicas en madera.</div>
             </div>
         </div>
     </section>
 
     <section>
-        <h2>Radar de Innovación & Tendencias (Live)</h2>
-        <div id="news-container" class="radar-grid">
-            <p style="color: var(--text-light); font-style: italic;">Sincronizando últimas novedades...</p>
-        </div>
+        <h2>Multimedia Maker</h2>
+        <details>
+            <summary>Ver demostraciones y proyectos técnicos</summary>
+            <div class="video-grid">
+                <div class="video-item" onclick="loadYoutube(this, 'aircAruvnKk')">
+                    <div class="video-container">
+                        <img src="https://img.youtube.com/vi/aircAruvnKk/maxresdefault.jpg" class="video-thumbnail">
+                        <div class="play-button-overlay"><div class="play-button-icon"><i class="fas fa-play"></i></div></div>
+                    </div>
+                </div>
+                <div class="video-item" onclick="loadYoutube(this, 'FvO6XJ6087E')">
+                    <div class="video-container">
+                        <img src="https://img.youtube.com/vi/FvO6XJ6087E/maxresdefault.jpg" class="video-thumbnail">
+                        <div class="play-button-overlay"><div class="play-button-icon"><i class="fas fa-play"></i></div></div>
+                    </div>
+                </div>
+            </div>
+        </details>
+    </section>
+
+    <section>
+        <h2>Radar de Innovación</h2>
+        <details>
+            <summary>Explorar últimas tendencias (IA, 3D, Madera, Salud)</summary>
+            <div id="news-container" class="radar-grid">
+                <p style="color: var(--text-light); font-style: italic;">Sincronizando flujos de noticias...</p>
+            </div>
+        </details>
     </section>
 
     <footer>
-        <p>Pablo González Puelles &copy; 2026 | Perfil Profesional pigp.cl</p>
+        <p>Pablo González Puelles — 2026 | pigp.cl</p>
     </footer>
 </div>
 
 <script>
-    async function loadMultiNews() {
-        // Fuentes que representan tu perfil: IA, Impresión 3D, Carpintería y Salud IT
+    // Radar News Script
+    async function loadRadar() {
         const feeds = [
-            { url: 'https://techcrunch.com/category/artificial-intelligence/feed/', label: 'IA & Futuro' },
-            { url: 'https://3dprint.com/feed/', label: 'Impresión 3D' },
-            { url: 'https://www.popularwoodworking.com/feed/', label: 'Carpintería' },
-            { url: 'https://www.healthcareitnews.com/rss/news', label: 'Salud Digital' }
+            { url: 'https://techcrunch.com/category/artificial-intelligence/feed/', label: 'IA' },
+            { url: 'https://3dprint.com/feed/', label: '3D' },
+            { url: 'https://www.popularwoodworking.com/feed/', label: 'Madera' },
+            { url: 'https://www.healthcareitnews.com/rss/news', label: 'Salud' }
         ];
-
         const container = document.getElementById('news-container');
         container.innerHTML = '';
-
         for (const feed of feeds) {
-            const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}`;
-            
+            const API = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}`;
             try {
-                const response = await fetch(API_URL);
-                const data = await response.json();
-                
+                const res = await fetch(API);
+                const data = await res.json();
                 if (data.items && data.items.length > 0) {
                     const item = data.items[0];
                     const card = document.createElement('div');
                     card.className = 'radar-card';
-                    
-                    // Limpieza y recorte de descripción para uniformidad
-                    const cleanDesc = item.description.replace(/<[^>]*>/g, '').substring(0, 90);
-
                     card.innerHTML = `
-                        <div>
-                            <span class="radar-tag">${feed.label}</span>
-                            <h3 class="radar-title">${item.title}</h3>
-                            <p class="radar-desc">${cleanDesc}...</p>
-                        </div>
-                        <a href="${item.link}" target="_blank" class="radar-link">
-                            Seguir noticia <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i>
-                        </a>
-                    `;
+                        <div><span class="radar-tag">${feed.label}</span>
+                        <h3 class="radar-title">${item.title}</h3>
+                        <p class="radar-desc">${item.description.replace(/<[^>]*>/g, '').substring(0, 75)}...</p></div>
+                        <a href="${item.link}" target="_blank" class="radar-link">Leer más <i class="fas fa-external-link-alt"></i></a>`;
                     container.appendChild(card);
                 }
-            } catch (error) {
-                console.error(`Error en categoría ${feed.label}:`, error);
-            }
+            } catch (e) { console.error(e); }
         }
     }
-    loadMultiNews();
+    loadRadar();
+
+    // YouTube Loader
+    function loadYoutube(el, id) {
+        const container = el.querySelector('.video-container');
+        if (container.querySelector('iframe')) return;
+        container.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    }
 </script>
 
 </body>
